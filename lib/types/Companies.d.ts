@@ -21,20 +21,20 @@ declare const CompaniesListParams: z.ZodObject<{
             type: "primary";
             email: string;
         } | undefined;
-        vat_number?: string | undefined;
-        tags?: string[] | undefined;
         ids?: string[] | undefined;
         term?: string | undefined;
+        tags?: string[] | undefined;
+        vat_number?: string | undefined;
         updated_since?: string | undefined;
     }, {
         email?: {
             type: "primary";
             email: string;
         } | undefined;
-        vat_number?: string | undefined;
-        tags?: string[] | undefined;
         ids?: string[] | undefined;
         term?: string | undefined;
+        tags?: string[] | undefined;
+        vat_number?: string | undefined;
         updated_since?: string | undefined;
     }>>;
     sort: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -63,10 +63,10 @@ declare const CompaniesListParams: z.ZodObject<{
             type: "primary";
             email: string;
         } | undefined;
-        vat_number?: string | undefined;
-        tags?: string[] | undefined;
         ids?: string[] | undefined;
         term?: string | undefined;
+        tags?: string[] | undefined;
+        vat_number?: string | undefined;
         updated_since?: string | undefined;
     } | undefined;
     sort?: {
@@ -83,10 +83,10 @@ declare const CompaniesListParams: z.ZodObject<{
             type: "primary";
             email: string;
         } | undefined;
-        vat_number?: string | undefined;
-        tags?: string[] | undefined;
         ids?: string[] | undefined;
         term?: string | undefined;
+        tags?: string[] | undefined;
+        vat_number?: string | undefined;
         updated_since?: string | undefined;
     } | undefined;
     sort?: {
@@ -210,7 +210,9 @@ declare const CompaniesListResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -220,6 +222,16 @@ declare const CompaniesListResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -230,23 +242,11 @@ declare const CompaniesListResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
-        tags: string[];
-        added_at: string;
-        updated_at: string;
         web_url: string;
+        vat_number: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -258,7 +258,9 @@ declare const CompaniesListResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -268,6 +270,16 @@ declare const CompaniesListResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -278,23 +290,11 @@ declare const CompaniesListResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
-        tags: string[];
-        added_at: string;
-        updated_at: string;
         web_url: string;
+        vat_number: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -308,7 +308,9 @@ declare const CompaniesListResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -318,6 +320,16 @@ declare const CompaniesListResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -328,23 +340,11 @@ declare const CompaniesListResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
-        tags: string[];
-        added_at: string;
-        updated_at: string;
         web_url: string;
+        vat_number: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -358,7 +358,9 @@ declare const CompaniesListResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -368,6 +370,16 @@ declare const CompaniesListResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -378,23 +390,11 @@ declare const CompaniesListResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
-        tags: string[];
-        added_at: string;
-        updated_at: string;
         web_url: string;
+        vat_number: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -528,7 +528,9 @@ declare const CompanyInfoResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -538,6 +540,16 @@ declare const CompanyInfoResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -548,29 +560,17 @@ declare const CompanyInfoResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
+        web_url: string;
+        vat_number: string;
         remarks: string;
-        tags: string[];
         custom_fields: {
             value?: any;
             id: string;
         }[];
         marketing_mails_consent: boolean;
-        added_at: string;
-        updated_at: string;
-        web_url: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -582,7 +582,9 @@ declare const CompanyInfoResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -592,6 +594,16 @@ declare const CompanyInfoResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -602,29 +614,17 @@ declare const CompanyInfoResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
+        web_url: string;
+        vat_number: string;
         remarks: string;
-        tags: string[];
         custom_fields: {
             value?: any;
             id: string;
         }[];
         marketing_mails_consent: boolean;
-        added_at: string;
-        updated_at: string;
-        web_url: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -638,7 +638,9 @@ declare const CompanyInfoResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -648,6 +650,16 @@ declare const CompanyInfoResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -658,29 +670,17 @@ declare const CompanyInfoResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
+        web_url: string;
+        vat_number: string;
         remarks: string;
-        tags: string[];
         custom_fields: {
             value?: any;
             id: string;
         }[];
         marketing_mails_consent: boolean;
-        added_at: string;
-        updated_at: string;
-        web_url: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -694,7 +694,9 @@ declare const CompanyInfoResponse: z.ZodObject<{
         name: string;
         status: "active" | "deactivated";
         language: string;
-        vat_number: string;
+        tags: string[];
+        added_at: string;
+        updated_at: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -704,6 +706,16 @@ declare const CompanyInfoResponse: z.ZodObject<{
             type: "phone" | "fax";
         }[];
         website: string;
+        primary_address: {
+            line_1: string;
+            postal_code: string;
+            city: string;
+            country: string;
+            area_level_two_id: {
+                type: string;
+                id: string;
+            };
+        };
         iban: string;
         bic: string;
         national_identification_number: string;
@@ -714,29 +726,17 @@ declare const CompanyInfoResponse: z.ZodObject<{
         invoicing_preferences: {
             electronic_invoicing_address: string;
         };
+        web_url: string;
+        vat_number: string;
         remarks: string;
-        tags: string[];
         custom_fields: {
             value?: any;
             id: string;
         }[];
         marketing_mails_consent: boolean;
-        added_at: string;
-        updated_at: string;
-        web_url: string;
         business_type: {
             type: string;
             id: string;
-        };
-        primary_address: {
-            line_1: string;
-            postal_code: string;
-            city: string;
-            country: string;
-            area_level_two_id: {
-                type: string;
-                id: string;
-            };
         };
         preferred_currency: string;
         responsible_user: {
@@ -835,7 +835,7 @@ declare const CompanyAdd: z.ZodObject<{
     marketing_mails_consent: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     language?: string | undefined;
-    vat_number?: string | undefined;
+    tags?: string[] | undefined;
     emails?: {
         type: "primary" | "invoicing";
         email: string;
@@ -845,6 +845,10 @@ declare const CompanyAdd: z.ZodObject<{
         type: "phone" | "fax";
     }[] | undefined;
     website?: string | undefined;
+    iban?: string | undefined;
+    bic?: string | undefined;
+    national_identification_number?: string | undefined;
+    vat_number?: string | undefined;
     addresses?: {
         type: "primary" | "invoicing" | "delivery" | "visiting";
         address: {
@@ -856,11 +860,7 @@ declare const CompanyAdd: z.ZodObject<{
             country: string;
         };
     }[] | undefined;
-    iban?: string | undefined;
-    bic?: string | undefined;
-    national_identification_number?: string | undefined;
     remarks?: string | undefined;
-    tags?: string[] | undefined;
     custom_fields?: {
         value?: any;
         id: string;
@@ -871,7 +871,7 @@ declare const CompanyAdd: z.ZodObject<{
     name: string;
 }, {
     language?: string | undefined;
-    vat_number?: string | undefined;
+    tags?: string[] | undefined;
     emails?: {
         type: "primary" | "invoicing";
         email: string;
@@ -881,6 +881,10 @@ declare const CompanyAdd: z.ZodObject<{
         type: "phone" | "fax";
     }[] | undefined;
     website?: string | undefined;
+    iban?: string | undefined;
+    bic?: string | undefined;
+    national_identification_number?: string | undefined;
+    vat_number?: string | undefined;
     addresses?: {
         type: "primary" | "invoicing" | "delivery" | "visiting";
         address: {
@@ -892,11 +896,7 @@ declare const CompanyAdd: z.ZodObject<{
             country: string;
         };
     }[] | undefined;
-    iban?: string | undefined;
-    bic?: string | undefined;
-    national_identification_number?: string | undefined;
     remarks?: string | undefined;
-    tags?: string[] | undefined;
     custom_fields?: {
         value?: any;
         id: string;
@@ -1000,7 +1000,7 @@ declare const CompaniesUpdate: z.ZodObject<z.extendShape<{
 }>, "strip", z.ZodTypeAny, {
     name?: string | undefined;
     language?: string | undefined;
-    vat_number?: string | undefined;
+    tags?: string[] | undefined;
     emails?: {
         type: "primary" | "invoicing";
         email: string;
@@ -1010,6 +1010,10 @@ declare const CompaniesUpdate: z.ZodObject<z.extendShape<{
         type: "phone" | "fax";
     }[] | undefined;
     website?: string | undefined;
+    iban?: string | undefined;
+    bic?: string | undefined;
+    national_identification_number?: string | undefined;
+    vat_number?: string | undefined;
     addresses?: {
         type: "primary" | "invoicing" | "delivery" | "visiting";
         address: {
@@ -1021,11 +1025,7 @@ declare const CompaniesUpdate: z.ZodObject<z.extendShape<{
             country: string;
         };
     }[] | undefined;
-    iban?: string | undefined;
-    bic?: string | undefined;
-    national_identification_number?: string | undefined;
     remarks?: string | undefined;
-    tags?: string[] | undefined;
     custom_fields?: {
         value?: any;
         id: string;
@@ -1037,7 +1037,7 @@ declare const CompaniesUpdate: z.ZodObject<z.extendShape<{
 }, {
     name?: string | undefined;
     language?: string | undefined;
-    vat_number?: string | undefined;
+    tags?: string[] | undefined;
     emails?: {
         type: "primary" | "invoicing";
         email: string;
@@ -1047,6 +1047,10 @@ declare const CompaniesUpdate: z.ZodObject<z.extendShape<{
         type: "phone" | "fax";
     }[] | undefined;
     website?: string | undefined;
+    iban?: string | undefined;
+    bic?: string | undefined;
+    national_identification_number?: string | undefined;
+    vat_number?: string | undefined;
     addresses?: {
         type: "primary" | "invoicing" | "delivery" | "visiting";
         address: {
@@ -1058,11 +1062,7 @@ declare const CompaniesUpdate: z.ZodObject<z.extendShape<{
             country: string;
         };
     }[] | undefined;
-    iban?: string | undefined;
-    bic?: string | undefined;
-    national_identification_number?: string | undefined;
     remarks?: string | undefined;
-    tags?: string[] | undefined;
     custom_fields?: {
         value?: any;
         id: string;

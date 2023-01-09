@@ -1,5 +1,5 @@
 import { AccessTokenObject } from "./types/General.js";
-import { ContactsAdd, contactsAddResponse, ContactsDelete, ContactsInfoResponse, ContactsLinkToCompany, ContactsTag, ContactsUnlinkFromCompany, ContactsUntag, ContactsUpdate, ContactsUpdateCompanyLink } from "./types/Contacts.js";
+import { ContactsAdd, contactsAddResponse, ContactsDelete, ContactsInfoResponse, ContactsLinkToCompany, ContactsListParams, ContactsListResponse, ContactsTag, ContactsUnlinkFromCompany, ContactsUntag, ContactsUpdate, ContactsUpdateCompanyLink } from "./types/Contacts.js";
 import { CustomFieldDefinitionsInfo, CustomFieldDefinitionsList, CustomFieldDefinitionsListParams } from "./types/CustomFields.js";
 import { DepartmentsInfoResponse, DepartmentsListParams, DepartmentsListResponse } from "./types/Departments.js";
 import { Uuid } from "./types/General.js";
@@ -35,6 +35,7 @@ declare class TLclient {
     customFieldDefinitionsList(params?: CustomFieldDefinitionsListParams): Promise<CustomFieldDefinitionsList>;
     customFieldDefinitionsInfo(id: Uuid): Promise<CustomFieldDefinitionsInfo>;
     workTypesList(params?: WorkTypesListParams): Promise<WorkTypesList>;
+    contactsList(params?: ContactsListParams): Promise<ContactsListResponse>;
     contactsInfo(id: Uuid): Promise<ContactsInfoResponse>;
     contactsAdd(body: ContactsAdd): Promise<contactsAddResponse>;
     contactsUpdate(body: ContactsUpdate): Promise<null>;

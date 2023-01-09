@@ -17,8 +17,11 @@ Endpoints wille be added whenever I need them in production / have some spare ti
   - ✅ Custom Fields (list, info)
   - ✅ Work Types (list)
 - CRM 👷‍♂️
-  - 👷‍♂️ Contacts (~~list~~, info, add, update, delete, tag, untag, linkToCompany, unlinkFromCompany, updateCompanyLink)
+  - ✅ Contacts (list, info, add, update, delete, tag, untag, linkToCompany, unlinkFromCompany, updateCompanyLink)
   - ✅ Companies (list, info, add, update, delete, tag, untag)
+  - 👷‍♂️ Business Types
+  - 👷‍♂️ Tags
+  - 👷‍♂️ Addresses
 - Deals 👷‍♂️
   - 👷‍♂️ Deals (list, info, create, update, move, win, lose, delete, ~~lostReasonsList~~ )
   - 👷‍♂️ Quotations (~~list~~, ~~info~~, ~~download~~, create, send, ~~update~~, ~~accept~~, ~~delete~~ )
@@ -38,7 +41,7 @@ Endpoints wille be added whenever I need them in production / have some spare ti
 
 ## Installation
 
-```typescript
+```console
 npm i @coachall/teamleader-node-client
 yarn add @coachall/teamleader-node-client
 ```
@@ -135,7 +138,7 @@ data: []
 
 ## Endpoints
 
-<details><summary>General</summary>
+<details><summary>General (9/9)</summary>
 <p>
 
 ### Departments
@@ -241,6 +244,95 @@ Get a list of all the definitions of custom fields. https://developer.teamleader
 
 ```typescript
 const worktypes: Promise<WorkTypesList> = await client.workTypesList(params?: WorkTypesListParams);
+```
+
+</p>
+</details>
+<details><summary>CRM (17/20)</summary>
+<p>
+
+### Contacts
+
+Contacts are physical entities who are added to your CRM database. Contacts might be linked to one or more companies. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.list
+
+#### List
+
+Get a list of contacts. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.list
+
+```typescript
+const contacts: Promise<ContactsListResponse> = await client.contactsList(params?: ContactsListParams);
+```
+
+#### Info
+
+Get details for a single contact. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.info
+
+```typescript
+const contact: Promise<ContactsInfoResponse> = await client.contactsInfo(id: Uuid);
+```
+
+#### Add
+
+Add a new contact. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.add
+
+```typescript
+const addContact: Promise<contactsAddResponse> = await client.contactsAdd(body: ContactsAdd);
+```
+
+#### Update
+
+Update a contact. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.update
+
+```typescript
+const updateContact: Promise<null> = await client.contactsUpdate(body: ContactsUpdate);
+```
+
+#### Delete
+
+Delete a contact. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.delete
+
+```typescript
+const deleteContact: Promise<null> = await client.contactsDelete(body: ContactsDelete);
+```
+
+#### Tag
+
+Add a new or existing tag to a contact. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.tag
+
+```typescript
+const tagContact: Promise<null> = await client.contactsTag(body: ContactsTag);
+```
+
+#### Untag
+
+Remove a tag from a contact. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.untag
+
+```typescript
+const untagContact: Promise<null> = await client.contactsUntag(body: ContactsUntag);
+```
+
+#### Link to company
+
+Link a contact to a company. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.linktocompany
+
+```typescript
+const linkContact: Promise<null> = await client.contactsLinkToCompany(body: ContactsLinkToCompany);
+```
+
+#### Unlink from company
+
+Unlink a contact from a company. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.unlinkfromcompany
+
+```typescript
+const unlinkContact: Promise<null> = await client.contactsUnlinkFromCompany(body: ContactsUnlinkFromCompany);
+```
+
+#### Update company link
+
+Update contact to company link. https://developer.teamleader.eu/#/reference/crm/contacts/contacts.updatecompanylink
+
+```typescript
+const updateCompanyLink: Promise<null> = await client.contactsUpdateCompanyLink(body: ContactsUpdateCompanyLink);
 ```
 
 </p>

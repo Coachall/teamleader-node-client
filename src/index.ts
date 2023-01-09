@@ -6,6 +6,8 @@ import {
 	ContactsDelete,
 	ContactsInfoResponse,
 	ContactsLinkToCompany,
+	ContactsListParams,
+	ContactsListResponse,
 	ContactsTag,
 	ContactsUnlinkFromCompany,
 	ContactsUntag,
@@ -282,6 +284,9 @@ class TLclient {
 
 	// CONTACTS
 	// https://developer.teamleader.eu/#/reference/crm/contacts/
+	contactsList(params?: ContactsListParams): Promise<ContactsListResponse> {
+		return this.get("get", "contacts.list", params);
+	}
 	contactsInfo(id: Uuid): Promise<ContactsInfoResponse> {
 		return this.get("get", "contacts.info", { id: id });
 	}

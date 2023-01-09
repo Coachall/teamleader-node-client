@@ -1,5 +1,93 @@
 import { z } from "zod";
 
+const ContactsListParams = z.object({
+	filter: z
+		.object({
+			email: z
+				.object({
+					type: z.enum(["primary"]),
+					email: z.string(),
+				})
+				.optional(),
+			ids: z.array(z.string().uuid()).optional(),
+			company_id: z.string().uuid().optional(),
+			term: z.string().optional(),
+			tags: z.array(z.string()).optional(),
+		})
+		.optional(),
+	sort: z
+		.array(
+			z.object({
+				field: z.enum(["name", "added_at", "updated_at"]),
+				order: z.enum(["asc", "desc"]),
+			})
+		)
+		.optional(),
+	page: z
+		.object({
+			size: z.number(),
+			number: z.number(),
+		})
+		.optional(),
+});
+
+const ContactsListResponse = z.object({
+	data: z.array(
+		z.object({
+			id: z.string().uuid(),
+			first_name: z.string().optional(),
+			last_name: z.string(),
+			status: z.enum(["active", "deactivated"]),
+			salutation: z.string().optional(),
+			emails: z
+				.array(
+					z.object({
+						type: z.enum(["primary"]),
+						email: z.string().email(),
+					})
+				)
+				.optional(),
+			telephones: z
+				.array(
+					z.object({
+						type: z.enum(["phone", "mobile", "fax"]),
+						number: z.string(),
+					})
+				)
+				.optional(),
+			website: z.string().url().optional(),
+			primary_address: z
+				.object({
+					line_1: z.string(),
+					postal_code: z.string(),
+					city: z.string(),
+					country: z.string(),
+					area_level_two: z.object({
+						id: z.string().uuid().optional(),
+						type: z.enum(["area_level_two"]),
+					}),
+				})
+				.optional(),
+			gender: z.enum(["male", "female"]).optional(),
+			birthdate: z.string().optional(),
+			iban: z.string().optional(),
+			bic: z.string().optional(),
+			national_identification_number: z.string().optional(),
+			language: z.string().optional(),
+			payment_term: z.object({
+				type: z.enum(["cash", "end_of_month", "after_invoice_date"]),
+			}),
+			invoicing_preferences: z.object({
+				electronic_invoicing_address: z.string(),
+			}),
+			tags: z.array(z.string()).optional(),
+			added_at: z.string(),
+			updated_at: z.string(),
+			web_url: z.string().url(),
+		})
+	),
+});
+
 const ContactsInfoResponse = z.object({
 	data: z.object({
 		id: z.string().uuid(),
@@ -162,6 +250,8 @@ const ContactsUnlinkFromCompany = z.object({
 	company_id: z.string().uuid(),
 });
 
+export type ContactsListParams = z.infer<typeof ContactsListParams>;
+export type ContactsListResponse = z.infer<typeof ContactsListResponse>;
 export type ContactsInfoResponse = z.infer<typeof ContactsInfoResponse>;
 export type ContactsAdd = z.infer<typeof ContactsAdd>;
 export type ContactsUpdate = z.infer<typeof ContactsUpdate>;

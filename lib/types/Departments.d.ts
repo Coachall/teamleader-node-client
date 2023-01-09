@@ -21,21 +21,21 @@ declare const response: z.ZodObject<{
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
         }[];
+        vat_number: string;
     }, {
         id: string;
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
         }[];
+        vat_number: string;
     }>, "many">;
     included: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, "strip", z.ZodTypeAny, {
@@ -45,11 +45,11 @@ declare const response: z.ZodObject<{
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
         }[];
+        vat_number: string;
     }[];
 }, {
     included?: {} | undefined;
@@ -58,11 +58,11 @@ declare const response: z.ZodObject<{
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
         }[];
+        vat_number: string;
     }[];
 }>;
 declare const params: z.ZodObject<{
@@ -167,7 +167,6 @@ declare const infoResponse: z.ZodObject<{
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -179,6 +178,7 @@ declare const infoResponse: z.ZodObject<{
         website: string;
         iban: string;
         bic: string;
+        vat_number: string;
         fiscal_regime: string | null;
     }, {
         id: string;
@@ -195,7 +195,6 @@ declare const infoResponse: z.ZodObject<{
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -207,6 +206,7 @@ declare const infoResponse: z.ZodObject<{
         website: string;
         iban: string;
         bic: string;
+        vat_number: string;
         fiscal_regime: string | null;
     }>;
     included: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
@@ -227,7 +227,6 @@ declare const infoResponse: z.ZodObject<{
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -239,6 +238,7 @@ declare const infoResponse: z.ZodObject<{
         website: string;
         iban: string;
         bic: string;
+        vat_number: string;
         fiscal_regime: string | null;
     };
 }, {
@@ -258,7 +258,6 @@ declare const infoResponse: z.ZodObject<{
         name: string;
         status: "active" | "archived";
         currency: string;
-        vat_number: string;
         emails: {
             type: "primary" | "invoicing";
             email: string;
@@ -270,6 +269,7 @@ declare const infoResponse: z.ZodObject<{
         website: string;
         iban: string;
         bic: string;
+        vat_number: string;
         fiscal_regime: string | null;
     };
 }>;

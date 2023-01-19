@@ -73,6 +73,7 @@ import {
 	RegisterWebhookRequest,
 } from "./types/Other.js";
 import { EventsInfoResponse } from "./types/Calendar.js";
+import { FilesUploadRequest, FilesUploadResponse } from "./types/Files.js";
 const axiosApiInstance = axios.create();
 
 interface OriginalRequest extends AxiosRequestConfig {
@@ -213,7 +214,8 @@ class TLclient {
 
 					await refresh(tokenObject);
 
-					const token = this.newAccessToken;
+					//const token = this.newAccessToken;
+					const token = this.access_token;
 					originalRequest.headers!["Authorization"] = "Bearer " + token;
 
 					return axiosApiInstance(originalRequest);
@@ -229,7 +231,9 @@ class TLclient {
 			params: params,
 			data: body,
 			url: `${this.basePath}${path}`,
-		}).then((e) => e.data);
+		})
+			.then((e) => e.data)
+			.catch((error) => error.response.data.errors);
 	}
 
 	// DEPARTMENTS
@@ -397,6 +401,12 @@ class TLclient {
 	}
 	productsAdd(body: ProductsAdd): Promise<ProductsAddResponse> {
 		return this.get("post", "products.add", undefined, body);
+	}
+
+	// FILES
+	// https://developer.teamleader.eu/#/reference/files/files/
+	filesUpload(body: FilesUploadRequest): Promise<FilesUploadResponse> {
+		return this.get("post", "files.upload", undefined, body);
 	}
 
 	// OTHER

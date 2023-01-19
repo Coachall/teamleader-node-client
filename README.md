@@ -34,7 +34,7 @@ Endpoints wille be added whenever I need them in production / have some spare ti
 - ~~Projects~~
 - ~~Tasks~~
 - ~~Time Tracking~~
-- ~~Files~~
+- Files 👷‍♂️ (~~list~~, ~~info~~, ~~download~~, upload, ~~delete~~ )
 - Other 👷‍♂️
   - 👷‍♂️ Migrate (id, ~~taxRate~~, ~~ActivityType~~ )
   - ✅ Webhooks (register, list, unregister)

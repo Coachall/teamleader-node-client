@@ -13,6 +13,8 @@ import { TaxRateParams, TaxRateResponse } from "./types/TaxRate.js";
 import { ProductInfo, ProductsAdd, ProductsAddResponse, ProductsList, ProductsListParams } from "./types/Products.js";
 import { ListWebhooksResponse, MigrateIdRequest, MigrateIdResponse, RegisterWebhookRequest } from "./types/Other.js";
 import { EventsInfoResponse } from "./types/Calendar.js";
+import { FilesUploadRequest, FilesUploadResponse } from "./types/Files.js";
+import { InvoicesInfoResponse } from "./types/Invoices.js";
 declare class TLclient {
     config: AccessTokenObject;
     private access_token;
@@ -67,6 +69,8 @@ declare class TLclient {
     productsList(params?: ProductsListParams): Promise<ProductsList>;
     productsInfo(id: Uuid): Promise<ProductInfo>;
     productsAdd(body: ProductsAdd): Promise<ProductsAddResponse>;
+    invoicesInfo(id: Uuid): Promise<InvoicesInfoResponse>;
+    filesUpload(body: FilesUploadRequest): Promise<FilesUploadResponse>;
     migrateId(body: MigrateIdRequest): Promise<MigrateIdResponse>;
     webhooksRegister(body: RegisterWebhookRequest): Promise<null>;
     webhooksList(): Promise<ListWebhooksResponse>;

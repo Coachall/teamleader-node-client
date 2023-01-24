@@ -74,6 +74,7 @@ import {
 } from "./types/Other.js";
 import { EventsInfoResponse } from "./types/Calendar.js";
 import { FilesUploadRequest, FilesUploadResponse } from "./types/Files.js";
+import { InvoicesInfoResponse } from "./types/Invoices.js";
 const axiosApiInstance = axios.create();
 
 interface OriginalRequest extends AxiosRequestConfig {
@@ -401,6 +402,12 @@ class TLclient {
 	}
 	productsAdd(body: ProductsAdd): Promise<ProductsAddResponse> {
 		return this.get("post", "products.add", undefined, body);
+	}
+
+	// INVOICES
+	// https://developer.teamleader.eu/#/reference/invoicing/invoices
+	invoicesInfo(id: Uuid): Promise<InvoicesInfoResponse> {
+		return this.get("get", "invoices.info", { id: id });
 	}
 
 	// FILES

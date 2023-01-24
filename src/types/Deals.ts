@@ -126,7 +126,7 @@ const DealsListResponse = z.object({
 	data: z.array(DealType),
 });
 
-const DealsInfoResponse = DealType.extend({
+const DealsInfoResponseExtend = DealType.extend({
 	phase_history: z.object({
 		phase: z.object({
 			type: z.string(),
@@ -152,6 +152,10 @@ const DealsInfoResponse = DealType.extend({
 			})
 		)
 		.optional(),
+});
+
+const DealsInfoResponse = z.object({
+	data: DealsInfoResponseExtend,
 });
 
 const DealsCreate = z.object({

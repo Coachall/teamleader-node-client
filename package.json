@@ -1,6 +1,6 @@
 {
 	"name": "@coachall/teamleader-node-client",
-	"version": "0.0.107",
+	"version": "0.0.108",
 	"description": "An asynchronous wrapper for the Teamleader API written in Typescript with Zod schema validation",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",

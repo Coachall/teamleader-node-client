@@ -183,7 +183,7 @@ const DealsCreate = z.object({
 	custom_fields: z
 		.array(
 			z.object({
-				id: z.string().uuid(),
+				definition: z.object({ id: z.string().uuid(), type: z.string() }),
 				value: z.any(),
 			})
 		)

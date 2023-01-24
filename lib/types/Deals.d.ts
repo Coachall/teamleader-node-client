@@ -484,118 +484,54 @@ declare const DealsListResponse: z.ZodObject<{
         };
     }[];
 }>;
-declare const DealsInfoResponse: z.ZodObject<z.extendShape<{
-    id: z.ZodString;
-    title: z.ZodString;
-    summary: z.ZodString;
-    reference: z.ZodString;
-    status: z.ZodEnum<["open", "won", "lost"]>;
-    lead: z.ZodObject<{
-        customer: z.ZodObject<{
-            type: z.ZodEnum<["contact", "company"]>;
-            id: z.ZodString;
+declare const DealsInfoResponse: z.ZodObject<{
+    data: z.ZodObject<z.extendShape<{
+        id: z.ZodString;
+        title: z.ZodString;
+        summary: z.ZodString;
+        reference: z.ZodString;
+        status: z.ZodEnum<["open", "won", "lost"]>;
+        lead: z.ZodObject<{
+            customer: z.ZodObject<{
+                type: z.ZodEnum<["contact", "company"]>;
+                id: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                type: "company" | "contact";
+                id: string;
+            }, {
+                type: "company" | "contact";
+                id: string;
+            }>;
+            contact_person: z.ZodOptional<z.ZodObject<{
+                type: z.ZodString;
+                id: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                type: string;
+                id: string;
+            }, {
+                type: string;
+                id: string;
+            }>>;
         }, "strip", z.ZodTypeAny, {
-            type: "company" | "contact";
-            id: string;
+            contact_person?: {
+                type: string;
+                id: string;
+            } | undefined;
+            customer: {
+                type: "company" | "contact";
+                id: string;
+            };
         }, {
-            type: "company" | "contact";
-            id: string;
+            contact_person?: {
+                type: string;
+                id: string;
+            } | undefined;
+            customer: {
+                type: "company" | "contact";
+                id: string;
+            };
         }>;
-        contact_person: z.ZodOptional<z.ZodObject<{
-            type: z.ZodString;
-            id: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            id: string;
-        }, {
-            type: string;
-            id: string;
-        }>>;
-    }, "strip", z.ZodTypeAny, {
-        contact_person?: {
-            type: string;
-            id: string;
-        } | undefined;
-        customer: {
-            type: "company" | "contact";
-            id: string;
-        };
-    }, {
-        contact_person?: {
-            type: string;
-            id: string;
-        } | undefined;
-        customer: {
-            type: "company" | "contact";
-            id: string;
-        };
-    }>;
-    department: z.ZodObject<{
-        type: z.ZodString;
-        id: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: string;
-        id: string;
-    }, {
-        type: string;
-        id: string;
-    }>;
-    estimated_value: z.ZodObject<{
-        amount: z.ZodNumber;
-        currency: z.ZodEnum<["BAM", "CAD", "CHF", "CLP", "CNY", "COP", "CZK", "DKK", "EUR", "GBP", "INR", "ISK", "JPY", "MAD", "MXN", "NOK", "PEN", "PLN", "RON", "SEK", "TRY", "USD", "ZAR"]>;
-    }, "strip", z.ZodTypeAny, {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    }, {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    }>;
-    estimated_closing_date: z.ZodString;
-    estimated_probability: z.ZodNumber;
-    weighted_value: z.ZodObject<{
-        amount: z.ZodNumber;
-        currency: z.ZodEnum<["BAM", "CAD", "CHF", "CLP", "CNY", "COP", "CZK", "DKK", "EUR", "GBP", "INR", "ISK", "JPY", "MAD", "MXN", "NOK", "PEN", "PLN", "RON", "SEK", "TRY", "USD", "ZAR"]>;
-    }, "strip", z.ZodTypeAny, {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    }, {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    }>;
-    purchase_order_number: z.ZodString;
-    current_phase: z.ZodObject<{
-        type: z.ZodString;
-        id: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: string;
-        id: string;
-    }, {
-        type: string;
-        id: string;
-    }>;
-    responsible_user: z.ZodObject<{
-        type: z.ZodString;
-        id: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: string;
-        id: string;
-    }, {
-        type: string;
-        id: string;
-    }>;
-    closed_at: z.ZodString;
-    source: z.ZodObject<{
-        type: z.ZodString;
-        id: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: string;
-        id: string;
-    }, {
-        type: string;
-        id: string;
-    }>;
-    lost_reason: z.ZodObject<{
-        reason: z.ZodObject<{
+        department: z.ZodObject<{
             type: z.ZodString;
             id: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -605,233 +541,449 @@ declare const DealsInfoResponse: z.ZodObject<z.extendShape<{
             type: string;
             id: string;
         }>;
-        remark: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        reason: {
+        estimated_value: z.ZodObject<{
+            amount: z.ZodNumber;
+            currency: z.ZodEnum<["BAM", "CAD", "CHF", "CLP", "CNY", "COP", "CZK", "DKK", "EUR", "GBP", "INR", "ISK", "JPY", "MAD", "MXN", "NOK", "PEN", "PLN", "RON", "SEK", "TRY", "USD", "ZAR"]>;
+        }, "strip", z.ZodTypeAny, {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        }, {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        }>;
+        estimated_closing_date: z.ZodString;
+        estimated_probability: z.ZodNumber;
+        weighted_value: z.ZodObject<{
+            amount: z.ZodNumber;
+            currency: z.ZodEnum<["BAM", "CAD", "CHF", "CLP", "CNY", "COP", "CZK", "DKK", "EUR", "GBP", "INR", "ISK", "JPY", "MAD", "MXN", "NOK", "PEN", "PLN", "RON", "SEK", "TRY", "USD", "ZAR"]>;
+        }, "strip", z.ZodTypeAny, {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        }, {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        }>;
+        purchase_order_number: z.ZodString;
+        current_phase: z.ZodObject<{
+            type: z.ZodString;
+            id: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
             type: string;
             id: string;
-        };
-        remark: string;
+        }, {
+            type: string;
+            id: string;
+        }>;
+        responsible_user: z.ZodObject<{
+            type: z.ZodString;
+            id: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            type: string;
+            id: string;
+        }, {
+            type: string;
+            id: string;
+        }>;
+        closed_at: z.ZodString;
+        source: z.ZodObject<{
+            type: z.ZodString;
+            id: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            type: string;
+            id: string;
+        }, {
+            type: string;
+            id: string;
+        }>;
+        lost_reason: z.ZodObject<{
+            reason: z.ZodObject<{
+                type: z.ZodString;
+                id: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                type: string;
+                id: string;
+            }, {
+                type: string;
+                id: string;
+            }>;
+            remark: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            reason: {
+                type: string;
+                id: string;
+            };
+            remark: string;
+        }, {
+            reason: {
+                type: string;
+                id: string;
+            };
+            remark: string;
+        }>;
+        created_at: z.ZodString;
+        updated_at: z.ZodString;
+        web_url: z.ZodString;
     }, {
-        reason: {
+        phase_history: z.ZodObject<{
+            phase: z.ZodObject<{
+                type: z.ZodString;
+                id: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                type: string;
+                id: string;
+            }, {
+                type: string;
+                id: string;
+            }>;
+            started_at: z.ZodString;
+            started_by: z.ZodObject<{
+                type: z.ZodString;
+                id: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                type: string;
+                id: string;
+            }, {
+                type: string;
+                id: string;
+            }>;
+        }, "strip", z.ZodTypeAny, {
+            phase: {
+                type: string;
+                id: string;
+            };
+            started_at: string;
+            started_by: {
+                type: string;
+                id: string;
+            };
+        }, {
+            phase: {
+                type: string;
+                id: string;
+            };
+            started_at: string;
+            started_by: {
+                type: string;
+                id: string;
+            };
+        }>;
+        quotations: z.ZodArray<z.ZodObject<{
+            type: z.ZodString;
+            id: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            type: string;
+            id: string;
+        }, {
+            type: string;
+            id: string;
+        }>, "many">;
+        custom_fields: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            id: z.ZodString;
+            value: z.ZodAny;
+        }, "strip", z.ZodTypeAny, {
+            value?: any;
+            id: string;
+        }, {
+            value?: any;
+            id: string;
+        }>, "many">>;
+    }>, "strip", z.ZodTypeAny, {
+        custom_fields?: {
+            value?: any;
+            id: string;
+        }[] | undefined;
+        id: string;
+        source: {
             type: string;
             id: string;
         };
-        remark: string;
+        summary: string;
+        title: string;
+        status: "open" | "won" | "lost";
+        updated_at: string;
+        web_url: string;
+        responsible_user: {
+            type: string;
+            id: string;
+        };
+        estimated_closing_date: string;
+        created_at: string;
+        weighted_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        reference: string;
+        lead: {
+            contact_person?: {
+                type: string;
+                id: string;
+            } | undefined;
+            customer: {
+                type: "company" | "contact";
+                id: string;
+            };
+        };
+        department: {
+            type: string;
+            id: string;
+        };
+        estimated_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        estimated_probability: number;
+        purchase_order_number: string;
+        current_phase: {
+            type: string;
+            id: string;
+        };
+        closed_at: string;
+        lost_reason: {
+            reason: {
+                type: string;
+                id: string;
+            };
+            remark: string;
+        };
+        phase_history: {
+            phase: {
+                type: string;
+                id: string;
+            };
+            started_at: string;
+            started_by: {
+                type: string;
+                id: string;
+            };
+        };
+        quotations: {
+            type: string;
+            id: string;
+        }[];
+    }, {
+        custom_fields?: {
+            value?: any;
+            id: string;
+        }[] | undefined;
+        id: string;
+        source: {
+            type: string;
+            id: string;
+        };
+        summary: string;
+        title: string;
+        status: "open" | "won" | "lost";
+        updated_at: string;
+        web_url: string;
+        responsible_user: {
+            type: string;
+            id: string;
+        };
+        estimated_closing_date: string;
+        created_at: string;
+        weighted_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        reference: string;
+        lead: {
+            contact_person?: {
+                type: string;
+                id: string;
+            } | undefined;
+            customer: {
+                type: "company" | "contact";
+                id: string;
+            };
+        };
+        department: {
+            type: string;
+            id: string;
+        };
+        estimated_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        estimated_probability: number;
+        purchase_order_number: string;
+        current_phase: {
+            type: string;
+            id: string;
+        };
+        closed_at: string;
+        lost_reason: {
+            reason: {
+                type: string;
+                id: string;
+            };
+            remark: string;
+        };
+        phase_history: {
+            phase: {
+                type: string;
+                id: string;
+            };
+            started_at: string;
+            started_by: {
+                type: string;
+                id: string;
+            };
+        };
+        quotations: {
+            type: string;
+            id: string;
+        }[];
     }>;
-    created_at: z.ZodString;
-    updated_at: z.ZodString;
-    web_url: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    data: {
+        custom_fields?: {
+            value?: any;
+            id: string;
+        }[] | undefined;
+        id: string;
+        source: {
+            type: string;
+            id: string;
+        };
+        summary: string;
+        title: string;
+        status: "open" | "won" | "lost";
+        updated_at: string;
+        web_url: string;
+        responsible_user: {
+            type: string;
+            id: string;
+        };
+        estimated_closing_date: string;
+        created_at: string;
+        weighted_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        reference: string;
+        lead: {
+            contact_person?: {
+                type: string;
+                id: string;
+            } | undefined;
+            customer: {
+                type: "company" | "contact";
+                id: string;
+            };
+        };
+        department: {
+            type: string;
+            id: string;
+        };
+        estimated_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        estimated_probability: number;
+        purchase_order_number: string;
+        current_phase: {
+            type: string;
+            id: string;
+        };
+        closed_at: string;
+        lost_reason: {
+            reason: {
+                type: string;
+                id: string;
+            };
+            remark: string;
+        };
+        phase_history: {
+            phase: {
+                type: string;
+                id: string;
+            };
+            started_at: string;
+            started_by: {
+                type: string;
+                id: string;
+            };
+        };
+        quotations: {
+            type: string;
+            id: string;
+        }[];
+    };
 }, {
-    phase_history: z.ZodObject<{
-        phase: z.ZodObject<{
-            type: z.ZodString;
-            id: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
+    data: {
+        custom_fields?: {
+            value?: any;
             id: string;
-        }, {
-            type: string;
-            id: string;
-        }>;
-        started_at: z.ZodString;
-        started_by: z.ZodObject<{
-            type: z.ZodString;
-            id: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            type: string;
-            id: string;
-        }, {
-            type: string;
-            id: string;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        phase: {
+        }[] | undefined;
+        id: string;
+        source: {
             type: string;
             id: string;
         };
-        started_at: string;
-        started_by: {
+        summary: string;
+        title: string;
+        status: "open" | "won" | "lost";
+        updated_at: string;
+        web_url: string;
+        responsible_user: {
             type: string;
             id: string;
         };
-    }, {
-        phase: {
+        estimated_closing_date: string;
+        created_at: string;
+        weighted_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        reference: string;
+        lead: {
+            contact_person?: {
+                type: string;
+                id: string;
+            } | undefined;
+            customer: {
+                type: "company" | "contact";
+                id: string;
+            };
+        };
+        department: {
             type: string;
             id: string;
         };
-        started_at: string;
-        started_by: {
+        estimated_value: {
+            currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
+            amount: number;
+        };
+        estimated_probability: number;
+        purchase_order_number: string;
+        current_phase: {
             type: string;
             id: string;
         };
-    }>;
-    quotations: z.ZodArray<z.ZodObject<{
-        type: z.ZodString;
-        id: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        type: string;
-        id: string;
-    }, {
-        type: string;
-        id: string;
-    }>, "many">;
-    custom_fields: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        id: z.ZodString;
-        value: z.ZodAny;
-    }, "strip", z.ZodTypeAny, {
-        value?: any;
-        id: string;
-    }, {
-        value?: any;
-        id: string;
-    }>, "many">>;
-}>, "strip", z.ZodTypeAny, {
-    custom_fields?: {
-        value?: any;
-        id: string;
-    }[] | undefined;
-    id: string;
-    source: {
-        type: string;
-        id: string;
-    };
-    summary: string;
-    title: string;
-    status: "open" | "won" | "lost";
-    updated_at: string;
-    web_url: string;
-    responsible_user: {
-        type: string;
-        id: string;
-    };
-    estimated_closing_date: string;
-    created_at: string;
-    weighted_value: {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    };
-    reference: string;
-    lead: {
-        contact_person?: {
+        closed_at: string;
+        lost_reason: {
+            reason: {
+                type: string;
+                id: string;
+            };
+            remark: string;
+        };
+        phase_history: {
+            phase: {
+                type: string;
+                id: string;
+            };
+            started_at: string;
+            started_by: {
+                type: string;
+                id: string;
+            };
+        };
+        quotations: {
             type: string;
             id: string;
-        } | undefined;
-        customer: {
-            type: "company" | "contact";
-            id: string;
-        };
+        }[];
     };
-    department: {
-        type: string;
-        id: string;
-    };
-    estimated_value: {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    };
-    estimated_probability: number;
-    purchase_order_number: string;
-    current_phase: {
-        type: string;
-        id: string;
-    };
-    closed_at: string;
-    lost_reason: {
-        reason: {
-            type: string;
-            id: string;
-        };
-        remark: string;
-    };
-    phase_history: {
-        phase: {
-            type: string;
-            id: string;
-        };
-        started_at: string;
-        started_by: {
-            type: string;
-            id: string;
-        };
-    };
-    quotations: {
-        type: string;
-        id: string;
-    }[];
-}, {
-    custom_fields?: {
-        value?: any;
-        id: string;
-    }[] | undefined;
-    id: string;
-    source: {
-        type: string;
-        id: string;
-    };
-    summary: string;
-    title: string;
-    status: "open" | "won" | "lost";
-    updated_at: string;
-    web_url: string;
-    responsible_user: {
-        type: string;
-        id: string;
-    };
-    estimated_closing_date: string;
-    created_at: string;
-    weighted_value: {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    };
-    reference: string;
-    lead: {
-        contact_person?: {
-            type: string;
-            id: string;
-        } | undefined;
-        customer: {
-            type: "company" | "contact";
-            id: string;
-        };
-    };
-    department: {
-        type: string;
-        id: string;
-    };
-    estimated_value: {
-        currency: "BAM" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "CZK" | "DKK" | "EUR" | "GBP" | "INR" | "ISK" | "JPY" | "MAD" | "MXN" | "NOK" | "PEN" | "PLN" | "RON" | "SEK" | "TRY" | "USD" | "ZAR";
-        amount: number;
-    };
-    estimated_probability: number;
-    purchase_order_number: string;
-    current_phase: {
-        type: string;
-        id: string;
-    };
-    closed_at: string;
-    lost_reason: {
-        reason: {
-            type: string;
-            id: string;
-        };
-        remark: string;
-    };
-    phase_history: {
-        phase: {
-            type: string;
-            id: string;
-        };
-        started_at: string;
-        started_by: {
-            type: string;
-            id: string;
-        };
-    };
-    quotations: {
-        type: string;
-        id: string;
-    }[];
 }>;
 declare const DealsCreate: z.ZodObject<{
     lead: z.ZodObject<{
@@ -878,20 +1030,38 @@ declare const DealsCreate: z.ZodObject<{
     estimated_closing_date: z.ZodOptional<z.ZodString>;
     estimated_probability: z.ZodOptional<z.ZodNumber>;
     custom_fields: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        id: z.ZodString;
+        definition: z.ZodObject<{
+            id: z.ZodString;
+            type: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            type: string;
+            id: string;
+        }, {
+            type: string;
+            id: string;
+        }>;
         value: z.ZodAny;
     }, "strip", z.ZodTypeAny, {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }, {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     summary?: string | undefined;
     custom_fields?: {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }[] | undefined;
     responsible_user_id?: string | undefined;
     phase_id?: string | undefined;
@@ -915,7 +1085,10 @@ declare const DealsCreate: z.ZodObject<{
     summary?: string | undefined;
     custom_fields?: {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }[] | undefined;
     responsible_user_id?: string | undefined;
     phase_id?: string | undefined;
@@ -981,14 +1154,29 @@ declare const DealsUpdate: z.ZodObject<z.extendShape<{
     estimated_closing_date: z.ZodOptional<z.ZodString>;
     estimated_probability: z.ZodOptional<z.ZodNumber>;
     custom_fields: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        id: z.ZodString;
+        definition: z.ZodObject<{
+            id: z.ZodString;
+            type: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            type: string;
+            id: string;
+        }, {
+            type: string;
+            id: string;
+        }>;
         value: z.ZodAny;
     }, "strip", z.ZodTypeAny, {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }, {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }>, "many">>;
 }, {
     id: z.ZodString;
@@ -1023,7 +1211,10 @@ declare const DealsUpdate: z.ZodObject<z.extendShape<{
     title?: string | undefined;
     custom_fields?: {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }[] | undefined;
     responsible_user_id?: string | undefined;
     phase_id?: string | undefined;
@@ -1048,7 +1239,10 @@ declare const DealsUpdate: z.ZodObject<z.extendShape<{
     title?: string | undefined;
     custom_fields?: {
         value?: any;
-        id: string;
+        definition: {
+            type: string;
+            id: string;
+        };
     }[] | undefined;
     responsible_user_id?: string | undefined;
     phase_id?: string | undefined;

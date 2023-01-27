@@ -98,10 +98,101 @@ const invoicesResponse = z.object({
 							type: z.enum(["percentage"]),
 							value: z.number(),
 						}),
+						total: z.object({
+							tax_exclusive: z.object({
+								amount: z.number(),
+								currency: currency,
+							}),
+							tax_exclusive_before_discount: z.object({
+								amount: z.number(),
+								currency: currency,
+							}),
+							tax_inclusive: z.object({
+								amount: z.number(),
+								currency: currency,
+							}),
+							tax_inclusive_before_discount: z.object({
+								amount: z.number(),
+								currency: currency,
+							}),
+							witheld_tax: z.object({
+								type: z.string(),
+								id: z.string().uuid(),
+							}),
+						}),
 					})
 				),
 			})
 		),
+		total: z.object({
+			tax_exclusive: z.object({
+				amount: z.number(),
+				currency: currency,
+			}),
+			tax_exclusive_before_discount: z.object({
+				amount: z.number(),
+				currency: currency,
+			}),
+			tax_inclusive: z.object({
+				amount: z.number(),
+				currency: currency,
+			}),
+			tax_inclusive_before_discount: z.object({
+				amount: z.number(),
+				currency: currency,
+			}),
+			taxes: z.array(
+				z.object({
+					rate: z.number(),
+					taxable: z.object({
+						amount: z.number(),
+						currency: currency,
+					}),
+					tax: z.object({
+						amount: z.number(),
+						currency: currency,
+					}),
+				})
+			),
+			withheld_taxes: z.array(
+				z.object({
+					id: z.string().uuid(),
+					taxable: z.object({
+						amount: z.number(),
+						currency: currency,
+					}),
+					withheld: z.object({
+						amount: z.number(),
+						currency: currency,
+					}),
+				})
+			),
+			payable: z.object({
+				amount: z.number(),
+				currency: currency,
+			}),
+			due: z.object({
+				amount: z.number(),
+				currency: currency,
+			}),
+		}),
+		payment_term: z.object({
+			type: z.enum(["cash", "end_of_month", "after_invoice_date"]),
+			days: z.number(),
+		}),
+		payments: z.array(
+			z.object({
+				paid_at: z.string(),
+				payment: z.object({
+					amount: z.number(),
+					currency: currency,
+				}),
+			})
+		),
+		payment_reference: z.string(),
+		note: z.string(),
+		//TODO: complete this
+
 		deal: z.object({
 			type: z.string(),
 			id: z.string().uuid(),
